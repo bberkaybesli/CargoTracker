@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Kargo Takip";
+}
+
+<h2>Kargo Takip</h2>
+
+<form asp-action="Sorgula" method="post">
+    <label>Takip Kodu:</label>
+    <input type="text" name="takipKodu" class="form-control" />
+    <br />
+    <button type="submit" class="btn btn-primary">Sorgula</button>
+</form>

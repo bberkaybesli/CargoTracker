@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin Panel</title>
+
+    <link rel="stylesheet" href="~/admin/vendor/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="~/admin/css/sb-admin-2.min.css" />
+    <style>
+        .sidebar-brand-icon img {
+            width: 64px !important;
+            height: 64px !important;
+            object-fit: contain;
+            border-radius: 12px;
+            padding: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .sidebar-brand-text {
+            font-size: 1.3rem !important;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="Index">
+                <div class="sidebar-brand-icon">
+                    <img src="@Url.Content("~/img/karaambar-logo.png")" alt="Kara Ambar Logo" />
+                </div>
+                <div class="sidebar-brand-text mx-3">Kara Ambar</div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Kargo" asp-action="Index">
+                    <i class="fas fa-box"></i>
+                    <span>Kargo Listesi</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Kargo" asp-action="Create">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Kargo Oluştur</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <span class="navbar-text mx-auto font-weight-bold">Admin Panel</span>
+                </nav>
+
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/admin/js/sb-admin-2.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

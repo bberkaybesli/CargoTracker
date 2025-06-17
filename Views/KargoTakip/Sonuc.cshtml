@@ -1,0 +1,138 @@
+﻿@model KaraAmbarKargoculuk.Models.Kargo
+
+@{
+    ViewData["Title"] = "Kargo Takip Sonucu";
+    var durum = Model?.Durum?.ToLower() ?? "";
+    string renk = "secondary";
+    string ikon = "fas fa-box";
+
+    if (durum.Contains("yolda")) { renk = "info"; ikon = "fas fa-truck-moving"; }
+    else if (durum.Contains("şube")) { renk = "warning"; ikon = "fas fa-warehouse"; }
+    else if (durum.Contains("teslim")) { renk = "success"; ikon = "fas fa-check-circle"; }
+    else if (durum.Contains("hazırlanıyor")) { renk = "primary"; ikon = "fas fa-cogs"; }
+    else if (durum.Contains("iptal")) { renk = "danger"; ikon = "fas fa-times-circle"; }
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+@if (Model == null)
+{
+    <div class="alert alert-danger mt-4 shadow-sm rounded">
+        <i class="fas fa-times-circle"></i> Kargo bulunamadı. Lütfen takip kodunu kontrol edin.
+    </div>
+}
+else
+{
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-10">
+            <div class="card shadow-lg border-0 my-5">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="rounded-circle bg-@renk d-flex align-items-center justify-content-center mr-3" style="width:56px;height:56px;">
+                            <i class="@ikon text-white" style="font-size:2rem;"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 font-weight-bold">@Model.TakipKodu</h4>
+                            <span class="badge badge-@renk px-3 py-2 mt-2" style="font-size:1rem;">
+                                <i class="@ikon mr-1"></i> @Model.Durum
+                            </span>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mb-3">
+                        <div class="col-6 mb-2">
+                            <span class="font-weight-bold text-dark"><i class="fas fa-user mr-1"></i> Gönderici:</span>
+                            <div class="info-box">@Model.Gonderici</div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <span class="font-weight-bold text-dark"><i class="fas fa-user-check mr-1"></i> Alıcı:</span>
+                            <div class="info-box">@Model.Alici</div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <span class="font-weight-bold text-dark"><i class="fas fa-calendar-alt mr-1"></i> Gönderi Tarihi:</span>
+                            <div class="info-box">@Model.GonderiTarihi.ToShortDateString()</div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <span class="font-weight-bold text-dark"><i class="fas fa-calendar-check mr-1"></i> Tahmini Teslim:</span>
+                            <div class="info-box">@(Model.TahminiTeslimTarihi?.ToShortDateString() ?? "-")</div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <span class="font-weight-bold text-dark"><i class="fas fa-map-marker-alt mr-1"></i> Son Konum:</span>
+                            <div class="info-box">@Model.Konum</div>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <span class="font-weight-bold text-dark"><i class="fas fa-info-circle mr-1"></i> Ürün Bilgisi:</span>
+                            <div class="info-box">@Model.Urun</div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-between">
+                        <a href="/" class="btn btn-outline-primary rounded-pill px-4">
+                            <i class="fas fa-arrow-left mr-1"></i> Anasayfa
+                        </a>
+                        <a href="/#kargotakip" class="btn btn-orange rounded-pill px-4" id="yeniKargoBtn">
+                            <i class="fas fa-search mr-1"></i> Yeni Kargo Sorgula
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .btn-orange {
+        background-color: #FF6600;
+        color: #fff;
+        border-radius: 30px;
+        border: none;
+        transition: background 0.2s, color 0.2s;
+        font-size: 1.2rem;
+    }
+
+        .btn-orange:hover, .btn-orange:focus {
+            background-color: #d35400;
+            color: #fff;
+            text-decoration: none;
+        }
+
+    .info-box {
+        background: #f9f9fa;
+        color: #232323;
+        border-radius: 10px;
+        padding: 8px 15px;
+        margin-top: 3px;
+        font-size: 1rem;
+        font-weight: 500;
+        box-shadow: 0 1px 2px rgba(100,100,100,.07);
+    }
+</style>
+
+<script>
+    // "Yeni Kargo Sorgula" butonuna tıklanınca anasayfadaki takip kutusuna yumuşak kay ve inputu focusla
+    document.addEventListener("DOMContentLoaded", function () {
+        var yeniBtn = document.getElementById("yeniKargoBtn");
+        if (yeniBtn) {
+            yeniBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                // Anasayfadaysa kaydır, başka sayfadaysa yönlendir.
+                if (window.location.pathname === "/" || window.location.pathname === "/Home/Index") {
+                    var hedef = document.getElementById("kargotakip");
+                    var input = hedef ? hedef.querySelector('input[name="TakipKodu"]') : null;
+                    if (hedef) {
+                        window.scrollTo({
+                            top: hedef.getBoundingClientRect().top + window.scrollY - 40,
+                            behavior: 'smooth'
+                        });
+                        setTimeout(function () {
+                            if (input) input.focus();
+                        }, 450);
+                    }
+                } else {
+                    // Anasayfaya yönlendir, anchor ile odak kodu orada da var!
+                    window.location.href = "/#kargotakip";
+                }
+            });
+        }
+    });
+</script>

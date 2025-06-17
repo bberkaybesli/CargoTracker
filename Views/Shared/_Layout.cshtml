@@ -1,0 +1,126 @@
+﻿@*
+    _Layout.cshtml — Tüm sayfaların ortak şablonu
+*@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Kara Ambar Kargoculuk</title>
+
+    <!-- Google Fonts ve FontAwesome -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Tema CSS ve Kitaplıklar -->
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/favicon.ico" rel="icon" type="image/x-icon" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main[role="main"] {
+            flex: 1 0 auto;
+        }
+
+        footer {
+            flex-shrink: 0;
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+            .footer-logo img {
+                max-width: 300px;
+                width: 100%;
+                height: auto;
+            }
+       @@media (max-width: 991px) {
+            .footer-logo img
+
+        {
+            max-width: 200px;
+        }
+
+        }
+    </style>
+</head>
+<body>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    @* FOOTER *@
+    <footer class="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5" id="contact">
+        <div class="row pt-5">
+            <div class="col-lg-7 col-md-6">
+                <div class="row">
+                    <div class="col-md-6 mb-5">
+                        <h3 class="text-primary mb-4">İletişim</h3>
+                        <p><i class="fa fa-map-marker-alt mr-2"></i>Bitlis/Merkez KYK Erkek Yurdu</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i>+90 505 446 49 35</p>
+                        <p><i class="fa fa-envelope mr-2"></i>bekirberkaybesli1@gmail.com</p>
+                        <div class="d-flex justify-content-start mt-4">
+                            <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/kara_ambar13/"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <h3 class="text-primary mb-4">Hızlı Menü</h3>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Anasayfa</a>
+                            <a class="text-white mb-2" href="#about"><i class="fa fa-angle-right mr-2"></i>Hakkımızda</a>
+                            <a class="text-white mb-2" href="#services"><i class="fa fa-angle-right mr-2"></i>Hizmetler</a>
+                            <a class="text-white mb-2" href="#contact"><i class="fa fa-angle-right mr-2"></i>İletişim</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6 mb-5 footer-logo">
+                <img src="~/img/karaambar-logo.png" alt="Kara Ambar Logo" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white">
+                    &copy; <a href="#">Kara Ambar</a> Tüm Hakları Saklıdır.
+                </p>
+            </div>
+            <div class="col-lg-6 text-center text-md-right">
+                <ul class="nav d-inline-flex">
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Kitaplıkları -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/easing/easing.min.js"></script>
+    <script src="~/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/lib/counterup/counterup.min.js"></script>
+    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/mail/jqBootstrapValidation.min.js"></script>
+    <script src="~/mail/contact.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/site.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

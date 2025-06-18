@@ -11,59 +11,77 @@
     <h4>Kargo</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TakipKodu)
+        <!-- Takip Kodu başlığı -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TakipKodu) <!-- Modeldeki TakipKodu property'sinin başlığını getirir -->
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TakipKodu)
+        <!-- Takip Kodu değeri -->
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TakipKodu) <!-- Modeldeki TakipKodu property'sinin değerini getirir -->
         </dd>
-        <dt class = "col-sm-2">
+
+        <!-- Gönderici başlığı ve değeri -->
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Gonderici)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Gonderici)
         </dd>
-        <dt class = "col-sm-2">
+
+        <!-- Alıcı başlığı ve değeri -->
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Alici)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Alici)
         </dd>
-        <dt class = "col-sm-2">
+
+        <!-- Durum başlığı ve değeri -->
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Durum)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Durum)
         </dd>
-        <dt class = "col-sm-2">
+
+        <!-- Konum başlığı ve değeri -->
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Konum)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Konum)
         </dd>
-        <dt class = "col-sm-2">
+
+        <!-- Ürün başlığı ve değeri -->
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Urun)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Urun)
         </dd>
-        <dt class = "col-sm-2">
+
+        <!-- Gönderi Tarihi başlığı ve değeri -->
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.GonderiTarihi)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.GonderiTarihi)
         </dd>
-        <dt class = "col-sm-2">
+
+        <!-- Tahmini Teslim Tarihi başlığı ve değeri -->
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.TahminiTeslimTarihi)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.TahminiTeslimTarihi)
         </dd>
     </dl>
-    
+
+    <!-- Kargo silme formu -->
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
+        <!-- Form, KargoController içindeki [HttpPost] Delete action'a gönderilir -->
+        <input type="hidden" asp-for="Id" /> <!-- Silinecek kargonun ID bilgisi gizli olarak gönderilir -->
         <input type="submit" value="Sil" class="btn btn-danger" /> |
-        <a asp-action="Index">Listeye geri dön</a>
+        <a asp-action="Index">Listeye geri dön</a> <!-- Kullanıcıyı Kargo listesine geri gönderir -->
     </form>
 </div>

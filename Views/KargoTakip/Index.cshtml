@@ -1,12 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Kargo Takip";
+    ViewData["Title"] = "Kargo Takip"; // Sayfa başlığını "Kargo Takip" olarak ayarlar
 }
 
-<h2>Kargo Takip</h2>
+<h2>Kargo Takip</h2> @* Başlık *@
 
 <form asp-action="Sorgula" method="post">
-    <label>Takip Kodu:</label>
-    <input type="text" name="takipKodu" class="form-control" />
+    @* Form, "Sorgula" action metoduna POST isteği gönderir *@
+    <label>Takip Kodu:</label> @* Kullanıcıdan takip kodu istenir *@
+    <input type="text" name="takipKodu" class="form-control" /> @* Giriş alanı *@
     <br />
-    <button type="submit" class="btn btn-primary">Sorgula</button>
+    <button type="submit" class="btn btn-primary">Sorgula</button> @* Formu gönderme butonu *@
 </form>

@@ -1,4 +1,4 @@
-﻿@{
+﻿    @{
     ViewData["Title"] = "Anasayfa";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -326,7 +326,7 @@
                 <div class="d-flex align-items-center mb-3">
                     <img class="img-fluid rounded-circle" src="~/img/testimonial-2.jpg" style="width: 60px; height: 60px;" alt="">
                     <div class="ml-3">
-                        <h6 class="font-weight-semi-bold m-0">Ahmet Yılmaz</h6>
+                        <h6 class="font-weight-semi-bold m-0">Ahmet Patnoslu</h6>
                         <small>- İşletmeci</small>
                     </div>
                 </div>
@@ -363,31 +363,41 @@
 
 <script>
     // Navbar sağ butonu tıklanınca kargo takip formuna yumuşak kaydırma + inputa focus
+       // Sayfa tamamen yüklendiğinde çalışacak
     document.addEventListener("DOMContentLoaded", function () {
+
+        // "Kargo Takibi" butonunu seçiyoruz (sınıfı .btn-orange ve href="#kargotakip" olan)
         var takipBtn = document.querySelector('.btn-orange[href="#kargotakip"]');
+
+        // Takip kodu input alanını seçiyoruz
         var input = document.querySelector('#kargotakip input[name="TakipKodu"]');
 
+        // Sayfada kargo takip bölümüne kaydırma ve input'a odaklanma işlemi
         function scrollAndFocus() {
             var hedef = document.getElementById('kargotakip');
             if (hedef) {
+                // Sayfayı yumuşak bir şekilde takip alanına kaydır
                 window.scrollTo({
                     top: hedef.getBoundingClientRect().top + window.scrollY - 40,
                     behavior: 'smooth'
                 });
+
+                // 0.45 saniye sonra input alanına odaklan
                 setTimeout(function () {
                     if (input) input.focus();
                 }, 450);
             }
         }
 
+        // Eğer kullanıcı butona tıklarsa, sayfa takip bölümüne kayar ve input odaklanır
         if (takipBtn) {
             takipBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                scrollAndFocus();
+                e.preventDefault(); // Linkin varsayılan davranışını engelle
+                scrollAndFocus();   // Kendi fonksiyonumuzu çalıştır
             });
         }
 
-        // Eğer URL'de #kargotakip ile açılırsa otomatik focusla
+        // Eğer kullanıcı sayfayı URL’de #kargotakip ile açarsa, otomatik olarak input'a odaklan
         if (window.location.hash === "#kargotakip") {
             setTimeout(function () {
                 if (input) input.focus();

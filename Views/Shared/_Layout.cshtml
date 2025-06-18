@@ -1,6 +1,7 @@
-﻿@*
-    _Layout.cshtml — Tüm sayfaların ortak şablonu
+﻿@* 
+    _Layout.cshtml — Tüm sayfaların ortak şablonu 
 *@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -51,18 +52,15 @@
                 width: 100%;
                 height: auto;
             }
-       @@media (max-width: 991px) {
-            .footer-logo img
 
-        {
-            max-width: 200px;
-        }
-
+        @@media (max-width: 991px) {
+            .footer-logo img {
+                max-width: 200px;
+            }
         }
     </style>
 </head>
 <body>
-
     <main role="main">
         @RenderBody()
     </main>
@@ -122,5 +120,20 @@
     <script src="~/js/site.js"></script>
 
     @RenderSection("Scripts", required: false)
+
+    @* Tawk.to Canlı Destek Scripti *@
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6852719990ede0191245afd6/1iu10ngbs';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    @* Tawk.to Script Bitişi *@
+
 </body>
 </html>

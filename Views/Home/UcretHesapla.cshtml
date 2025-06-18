@@ -1,63 +1,94 @@
 ﻿@model KaraAmbarKargoculuk.Models.KargoUcretiViewModel
+
 @{
-    ViewData["Title"] = "Kargo Ücreti Hesapla";
+    ViewData["Title"] = "Kargo Ücreti Hesapla"; // Sayfa başlığı belirleniyor
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow rounded-4 p-4">
-                <h2 class="text-center mb-4">Kargo Ücreti Hesapla</h2>
+<h2 class="text-center my-4">Kargo Ücreti Hesapla</h2>
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-4">
+
+                <!-- Bilgilendirme mesajı -->
+                <div class="alert alert-info text-center rounded-pill mb-4">
+                    Hesaplama: <strong>Mesafe + Ağırlık + Kargo Tipi</strong> dikkate alınarak yapılır.
+                </div>
 
                 <form asp-action="UcretHesapla" method="post">
+                    <!-- Gönderici il -->
                     <div class="form-group mb-3">
-                        <label>Gönderici İl</label>
+                        <label asp-for="GondericiIl" class="form-label">Gönderici İl</label>
                         <select asp-for="GondericiIl" class="form-control" asp-items="@(new SelectList(Model.Iller))">
                             <option value="">İl Seçiniz</option>
                         </select>
-                        <span asp-validation-for="GondericiIl" class="text-danger"></span>
+                        <span asp-validation-for="GondericiIl" class="text-danger small"></span>
                     </div>
 
+                    <!-- Alıcı il -->
                     <div class="form-group mb-3">
-                        <label>Alıcı İl</label>
+                        <label asp-for="AliciIl" class="form-label">Alıcı İl</label>
                         <select asp-for="AliciIl" class="form-control" asp-items="@(new SelectList(Model.Iller))">
                             <option value="">İl Seçiniz</option>
                         </select>
-                        <span asp-validation-for="AliciIl" class="text-danger"></span>
+                        <span asp-validation-for="AliciIl" class="text-danger small"></span>
                     </div>
 
+                    <!-- Ağırlık -->
                     <div class="form-group mb-3">
-                        <label>Paket Ağırlığı (kg)</label>
+                        <label asp-for="AgirlikKg" class="form-label">Paket Ağırlığı (kg)</label>
                         <input asp-for="AgirlikKg" type="number" step="0.1" class="form-control" />
-                        <span asp-validation-for="AgirlikKg" class="text-danger"></span>
+                        <span asp-validation-for="AgirlikKg" class="text-danger small"></span>
                     </div>
 
+                    <!-- Kargo tipi -->
                     <div class="form-group mb-4">
-                        <label>Kargo Tipi</label>
+                        <label asp-for="KargoTipi" class="form-label">Kargo Tipi</label>
                         <select asp-for="KargoTipi" class="form-control">
                             <option value="">Seçiniz</option>
                             <option>Standart</option>
                             <option>Hızlı</option>
                         </select>
-                        <span asp-validation-for="KargoTipi" class="text-danger"></span>
+                        <span asp-validation-for="KargoTipi" class="text-danger small"></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100 rounded-pill">Ücreti Hesapla</button>
+                    <!-- Hesapla -->
+                    <button type="submit" class="btn btn-orange w-100 rounded-pill">Ücreti Hesapla</button>
                 </form>
 
+                <!-- Sonuç gösterimi -->
                 @if (Model.HesaplananUcret != null)
                 {
-                    <div class="alert alert-success mt-4 text-center rounded-pill">
+                    <div class="alert alert-success mt-4 text-center rounded-pill shadow-sm">
                         <strong>Toplam Ücret:</strong> @Model.HesaplananUcret TL
                     </div>
                 }
+
             </div>
         </div>
     </div>
 </div>
 
 @section Scripts {
+    @* Doğrulama scriptleri *@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<!-- Özel turuncu buton tasarımı -->
+<style>
+    .btn-orange {
+        background-color: #FF6600;
+        color: #fff;
+        border: none;
+        transition: background 0.3s ease;
+        font-weight: bold;
+    }
+
+        .btn-orange:hover {
+            background-color: #cc5200;
+            color: #fff;
+        }
+</style>

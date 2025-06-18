@@ -8,67 +8,63 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
+
+        <!-- Form verileri, KargoController içindeki Create (POST) action'a gönderilecek -->
         <form asp-action="Create">
+
+            <!-- Modeldeki hataları genel olarak bu alanda gösterir -->
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="TakipKodu" class="control-label"></label>
-                <input asp-for="TakipKodu" class="form-control" readonly />
-            </div>
+            <!-- Takip kodu input'u (readonly) -->
+            <!-- asp-for: Modeldeki TakipKodu özelliği ile input'u bağlar -->
+            <label asp-for="TakipKodu" class="control-label"></label>
+            <input asp-for="TakipKodu" class="form-control" readonly />
 
-            <div class="form-group">
-                <label asp-for="Gonderici" class="control-label"></label>
-                <input asp-for="Gonderici" class="form-control" />
-                <span asp-validation-for="Gonderici" class="text-danger"></span>
-            </div>
+            <!-- Gönderici adı input'u -->
+            <label asp-for="Gonderici" class="control-label"></label>
+            <input asp-for="Gonderici" class="form-control" />
+            <span asp-validation-for="Gonderici" class="text-danger"></span>
 
-            <div class="form-group">
-                <label asp-for="Alici" class="control-label"></label>
-                <input asp-for="Alici" class="form-control" />
-                <span asp-validation-for="Alici" class="text-danger"></span>
-            </div>
+            <!-- Alıcı adı input'u -->
+            <label asp-for="Alici" class="control-label"></label>
+            <input asp-for="Alici" class="form-control" />
+            <span asp-validation-for="Alici" class="text-danger"></span>
 
-            <div class="form-group">
-                <label asp-for="Durum" class="control-label"></label>
-                <input asp-for="Durum" class="form-control" />
-                <span asp-validation-for="Durum" class="text-danger"></span>
-            </div>
+            <!-- Durum bilgisi input'u -->
+            <label asp-for="Durum" class="control-label"></label>
+            <input asp-for="Durum" class="form-control" />
+            <span asp-validation-for="Durum" class="text-danger"></span>
 
-            <div class="form-group">
-                <label asp-for="Konum" class="control-label"></label>
-                <input asp-for="Konum" class="form-control" />
-                <span asp-validation-for="Konum" class="text-danger"></span>
-            </div>
+            <!-- Konum bilgisi input'u -->
+            <label asp-for="Konum" class="control-label"></label>
+            <input asp-for="Konum" class="form-control" />
+            <span asp-validation-for="Konum" class="text-danger"></span>
 
-            <div class="form-group">
-                <label asp-for="Urun" class="control-label"></label>
-                <input asp-for="Urun" class="form-control" />
-                <span asp-validation-for="Urun" class="text-danger"></span>
-            </div>
+            <!-- Ürün bilgisi input'u -->
+            <label asp-for="Urun" class="control-label"></label>
+            <input asp-for="Urun" class="form-control" />
+            <span asp-validation-for="Urun" class="text-danger"></span>
 
-            <div class="form-group">
-                <label asp-for="GonderiTarihi" class="control-label"></label>
-                <input asp-for="GonderiTarihi" class="form-control" />
-                <span asp-validation-for="GonderiTarihi" class="text-danger"></span>
-            </div>
+            <!-- Gönderi tarihi input'u -->
+            <label asp-for="GonderiTarihi" class="control-label"></label>
+            <input asp-for="GonderiTarihi" class="form-control" />
+            <span asp-validation-for="GonderiTarihi" class="text-danger"></span>
 
-            <div class="form-group">
-                <label asp-for="TahminiTeslimTarihi" class="control-label"></label>
-                <input asp-for="TahminiTeslimTarihi" class="form-control" />
-                <span asp-validation-for="TahminiTeslimTarihi" class="text-danger"></span>
-            </div>
+            <!-- Tahmini teslim tarihi input'u -->
+            <label asp-for="TahminiTeslimTarihi" class="control-label"></label>
+            <input asp-for="TahminiTeslimTarihi" class="form-control" />
+            <span asp-validation-for="TahminiTeslimTarihi" class="text-danger"></span>
 
-            <div class="form-group">
-                <input type="submit" value="Oluştur" class="btn btn-success" />
-            </div>
+            <!-- Form gönderme butonu -->
+            <input type="submit" value="Oluştur" class="btn btn-success" />
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Listeye Dön</a>
-</div>
+<!-- Listeye geri dönüş linki -->
+<a asp-action="Index">Listeye Dön</a>
 
+<!-- Client-side doğrulama scriptleri -->
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

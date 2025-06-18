@@ -32,6 +32,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
+            @* Logo ve ana sayfa bağlantısı *@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="Index">
                 <div class="sidebar-brand-icon">
                     <img src="@Url.Content("~/img/karaambar-logo.png")" alt="Kara Ambar Logo" />
@@ -41,6 +42,7 @@
 
             <hr class="sidebar-divider my-0">
 
+            @* Kargo Listesi sayfası menü öğesi *@
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Kargo" asp-action="Index">
                     <i class="fas fa-box"></i>
@@ -48,6 +50,7 @@
                 </a>
             </li>
 
+            @* Kargo Oluştur sayfası menü öğesi *@
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Kargo" asp-action="Create">
                     <i class="fas fa-plus-circle"></i>
@@ -59,10 +62,12 @@
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
+                @* Üst bar alanı *@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <span class="navbar-text mx-auto font-weight-bold">Admin Panel</span>
                 </nav>
 
+                @* Sayfa içeriği buraya yansıtılacak *@
                 <div class="container-fluid">
                     @RenderBody()
                 </div>

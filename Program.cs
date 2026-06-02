@@ -9,6 +9,7 @@ builder.Services.AddDbContext<KaraAmbarKargoculuk.Data.UygulamaVeritabani>(optio
     options.UseSqlServer(builder.Configuration.GetConnectionString("Varsayilan")));
 
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
